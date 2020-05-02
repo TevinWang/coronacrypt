@@ -1,3 +1,9 @@
+##CoronaSafe
+
+A platform dedicated to helping people create a network of Coronavirus cases and inform others of nearby cases.
+Visit https://tevinwang.github.io/coronasafe to try out this React app.
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
