@@ -1,5 +1,5 @@
-const K_WIDTH = 40;
-const K_HEIGHT = 40;
+const K_WIDTH = 60;
+const K_HEIGHT = 60;
 
 const greatPlaceStyle = {
   // initially any map object has left top corner at lat lng coordinates
@@ -10,7 +10,7 @@ const greatPlaceStyle = {
   left: -K_WIDTH / 2,
   top: -K_HEIGHT / 2,
 
-  border: '5px solid #f44336',
+  border: '5px solid #2ed69a',
   borderRadius: K_HEIGHT,
   backgroundColor: 'white',
   textAlign: 'center',

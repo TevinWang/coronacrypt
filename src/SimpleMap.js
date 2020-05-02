@@ -4,6 +4,11 @@ import React, { Component } from 'react';
 import GoogleMapReact from 'google-map-react';
 import { geolocated } from "react-geolocated";
 import MyGreatPlace from './MyGreatPlace.js';
+import './App.css';
+import avatar from './img/avatar.svg';
+import bg from './img/bg.svg';
+import wave from './img/wave.png';
+import coronabottle from './img/coronabottle.png';
 
 
 //Sends current coordinates to url
@@ -29,6 +34,18 @@ function parseCoords(coords) {
     "longitude": lon
   };
 }
+function addcl(){
+	let parent = this.parentNode.parentNode;
+	parent.classList.add("focus");
+}
+
+function remcl(){
+	let parent = this.parentNode.parentNode;
+	if(this.value == ""){
+		parent.classList.remove("focus");
+	}
+}
+
 function gotCorona(coords, url, username) {
   var xmlhttp = new XMLHttpRequest();
   xmlhttp.open("POST", url);  
@@ -79,7 +96,7 @@ class SimpleMap extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.toggleMap = this.toggleMap.bind(this);
-
+    this.logOut = this.logOut.bind(this);
     //sendCoords({latitude:  37.5042267, longitude:  -121.9643745} ,"https://RawPythonTest.r2dev2bb8.repl.co");
     SimpleMap.state = {map: false, latitude: 0.0, longitude: 0.0, coords: [], coordState: false};
     //this.getCoords({latitude: 37.5042267, longitude: -121.9643745 }, "https://RawPythonTest.r2dev2bb8.repl.co");
@@ -100,6 +117,9 @@ class SimpleMap extends Component {
   // create points on maps
   setCoordState(coords) {
     this.setState(coords, coords);
+  }
+  logOut() {
+    this.setState({loggedIn: false, map: false});
   }
    getCoords(coords, url, username) {
     console.log(coords);
@@ -214,46 +234,87 @@ class SimpleMap extends Component {
   ) : !this.props.isGeolocationEnabled ? (
       <div>Geolocation is not enabled</div>
   ) : this.props.coords && !this.state.loggedIn ? (
-
-      // Important! Always set the container height explicitly
-      <div style={{ height: '100vh', width: '100%' , textalign: 'center'}}>
-        <h1>Welcome to <b>CoronaSafe.</b></h1>
-        <form onSubmit={this.handleSubmit}>
-        <label>
-          Username:
-          <input type="text" value={this.state.value} onChange={this.handleChange} />
-        </label>
-        <input type="submit" value="Submit" />
-      </form>
-        <GoogleMapReact
-          bootstrapURLKeys={{key: "AIzaSyDTz5KwujIjzE6RRCnaJ5ZoZSroy4vdz-0"}}
-          defaultCenter={{lat: this.props.coords.latitude, lng: this.props.coords.longitude}}
-          defaultZoom={17}
-        >
-       
-       {/* <MyGreatPlace lat={this.props.coords.latitude} lng={this.props.coords.longitude} />  */}
-          {/* {this.createTable(SimpleMap.state.coords)} */}
-          {/* {this.getCoords(this.props.coords, "https://RawPythonTest.r2dev2bb8.repl.co")} */}
-          {/* {this.getCoords(this.props.coords, "https://RawPythonTest.r2dev2bb8.repl.co")} */}
-          {/* {this.createTable()} */}
-          {/* <AnyReactComponent
-            lat={this.state.latitude}
-            lng={this.state.longitude}
-            text="My Marker"
-          />  */}
-        </GoogleMapReact>
+      <div style={{ height: '100vh', width: '100%', position: 'relative', }}>
+      <img class="wave" src={wave} />
+      <h2><br></br></h2>
+      <div style={{textAlign: 'center', display: 'flex', justifyContent: 'center'}}>
+        <h2><br></br></h2>
+        <img src={coronabottle} style={{height: '50px'}} /><h1>CORONASAFE.</h1>
       </div>
-  ) : this.props.coords && this.state.loggedIn && !this.state.map ? (
-    <div style={{ height: '100vh', width: '100%' , textAlign: 'center', marginTop: 'auto', marginBottom: 'auto'}}>
-      <h1>Welcome to CoronaSafe, {this.state.value}.</h1>
-      <button onClick={this.toggleMap}>Show Map</button>
+      <div class="container">
+		{/* <div class="img">
+      
+			<img src={coronabottle} />
+		</div> */}
+    {document.querySelectorAll(".input").forEach(input => {
+    input.addEventListener("focus", addcl);
+    input.addEventListener("blur", remcl);
+  })}
+		<div class="login-content">
+			<form onSubmit={this.handleSubmit}>
+				<img src={avatar} />
+				<h1>Welcome</h1>
+           		<div class="input-div one">
+           		   <div class="i">
+           		   		<i class="fas fa-user"></i>
+           		   </div>
+           		   <div class="div">
+           		   		<h5>Username</h5>
+           		   		<input type="text" class="input" value={this.state.value} onChange={this.handleChange} />
+           		   </div>
+           		</div>
+            	<input type="submit" class="btn" value="Login" />
+            </form>
+        </div>
+        
+        
     </div>
+      </div>
+      
+  ) : this.props.coords && this.state.loggedIn && !this.state.map ? (
+    <div style={{ height: '100vh', width: '100%', position: 'relative', }}>
+    <img class="wave" src={wave} />
+    <h2><br></br></h2>
+    <div style={{textAlign: 'center', display: 'flex', justifyContent: 'center'}}>
+      <h2><br></br></h2>
+      <img src={coronabottle} style={{height: '50px'}} /><h1>CORONASAFE.</h1>
+    </div>
+    <div class="container">
+  {/* <div class="img">
+    
+    <img src={coronabottle} />
+  </div> */}
+  <div class="login-content">
+    <form onSubmit={this.handleSubmit}>
+      <img src={avatar} />
+      <h1>Welcome, {this.state.value}.</h1>
+             <div class="input-div one">
+                <div class="i">
+                    <i class="fas fa-user"></i>
+                </div>
+             </div>
+             <button class="btn" onClick={this.toggleMap}>Show Map</button>
+          </form>
+      </div>
+      </div>
+      </div>
   ) : this.props.coords && this.state.loggedIn && this.state.map ? ( 
     <div style={{ height: '100vh', width: '100%' , textAlign: 'center', marginTop: 'auto', marginBottom: 'auto'}}>
-      <h1>Welcome to CoronaSafe, {this.state.value}.</h1>
-      <h2>Cases near you below...</h2>
-      <button onClick={gotCorona(this.props.coords,"https://RawPythonTest.r2dev2bb8.repl.co", this.state.value)}>I Got Corona</button>
-      <GoogleMapReact
+      <img class="wave" src={wave} />
+    <h2><br></br></h2>
+    <div style={{textAlign: 'center', display: 'flex', justifyContent: 'center'}}>
+      <h2><br></br></h2>
+      <img src={coronabottle} style={{height: '50px'}} /><h1>CORONASAFE.</h1>
+    </div>
+    <div style={{textAlign: 'center'}}>
+    <h1><br></br></h1>
+    <h1>Welcome, {this.state.value}.</h1>
+    <div style={{display: 'flex'}}>
+    <button class="btn" style={{width: '200px', marginLeft: 'auto', marginRight: 'auto'}} onClick={gotCorona(this.props.coords,"https://RawPythonTest.r2dev2bb8.repl.co", this.state.value)}>Report Corona</button>
+    <button class="btn" style={{width: '200px', marginLeft: 'auto', marginRight: 'auto'}} onClick={this.logOut}>Logout</button>
+     </div>
+     </div>
+     <GoogleMapReact
           bootstrapURLKeys={{key: "AIzaSyDTz5KwujIjzE6RRCnaJ5ZoZSroy4vdz-0"}}
           defaultCenter={{lat: this.props.coords.latitude, lng: this.props.coords.longitude}}
           defaultZoom={14}
@@ -269,13 +330,15 @@ class SimpleMap extends Component {
             lng={this.state.longitude}
             text="My Marker"
           />  */}
-        </GoogleMapReact>
+      </GoogleMapReact>
     </div>
   ) : (
         <div>Getting the location data&hellip; </div>
     );
   }
 }
+
+
 
 export default geolocated({
   positionOptions: {

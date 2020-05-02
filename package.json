@@ -2,7 +2,7 @@
   "name": "coronasafe",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://github.com/TevinWang/coronasafe",
+  "homepage": "http://tevinwang.github.io/coronasafe/",
   "dependencies": {
     "@react-native-community/geolocation": "^2.0.2",
     "@testing-library/jest-dom": "^4.2.4",
