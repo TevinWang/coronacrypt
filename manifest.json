@@ -1,6 +1,6 @@
 {
-  "short_name": "CoronaCrypt",
-  "name": "CoronaCrypt: A COVID-19 Privacy Health App",
+  "short_name": "React App",
+  "name": "Create React App Sample",
   "icons": [
     {
       "src": "favicon.ico",
