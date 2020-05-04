@@ -1,25 +1,28 @@
 {
   "files": {
-    "main.css": "/coronacrypt/static/css/main.d89c65d2.chunk.css",
-    "main.js": "/coronacrypt/static/js/main.9b758d1d.chunk.js",
-    "main.js.map": "/coronacrypt/static/js/main.9b758d1d.chunk.js.map",
+    "main.css": "/coronacrypt/static/css/main.be8927f3.chunk.css",
+    "main.js": "/coronacrypt/static/js/main.3cc09c7d.chunk.js",
+    "main.js.map": "/coronacrypt/static/js/main.3cc09c7d.chunk.js.map",
     "runtime-main.js": "/coronacrypt/static/js/runtime-main.6a9aac57.js",
     "runtime-main.js.map": "/coronacrypt/static/js/runtime-main.6a9aac57.js.map",
-    "static/js/2.28f59e8e.chunk.js": "/coronacrypt/static/js/2.28f59e8e.chunk.js",
-    "static/js/2.28f59e8e.chunk.js.map": "/coronacrypt/static/js/2.28f59e8e.chunk.js.map",
+    "static/css/2.de424728.chunk.css": "/coronacrypt/static/css/2.de424728.chunk.css",
+    "static/js/2.fe8be964.chunk.js": "/coronacrypt/static/js/2.fe8be964.chunk.js",
+    "static/js/2.fe8be964.chunk.js.map": "/coronacrypt/static/js/2.fe8be964.chunk.js.map",
     "index.html": "/coronacrypt/index.html",
-    "precache-manifest.78210e5368a1a6169830be835e7d7cc9.js": "/coronacrypt/precache-manifest.78210e5368a1a6169830be835e7d7cc9.js",
+    "precache-manifest.8ab5753b84feaa316b3772a8af8adf70.js": "/coronacrypt/precache-manifest.8ab5753b84feaa316b3772a8af8adf70.js",
     "service-worker.js": "/coronacrypt/service-worker.js",
-    "static/css/main.d89c65d2.chunk.css.map": "/coronacrypt/static/css/main.d89c65d2.chunk.css.map",
-    "static/js/2.28f59e8e.chunk.js.LICENSE.txt": "/coronacrypt/static/js/2.28f59e8e.chunk.js.LICENSE.txt",
+    "static/css/2.de424728.chunk.css.map": "/coronacrypt/static/css/2.de424728.chunk.css.map",
+    "static/css/main.be8927f3.chunk.css.map": "/coronacrypt/static/css/main.be8927f3.chunk.css.map",
+    "static/js/2.fe8be964.chunk.js.LICENSE.txt": "/coronacrypt/static/js/2.fe8be964.chunk.js.LICENSE.txt",
     "static/media/avatar.svg": "/coronacrypt/static/media/avatar.f620e5fd.svg",
     "static/media/bg.svg": "/coronacrypt/static/media/bg.374a04af.svg",
     "static/media/wave.png": "/coronacrypt/static/media/wave.6d252a00.png"
   },
   "entrypoints": [
     "static/js/runtime-main.6a9aac57.js",
-    "static/js/2.28f59e8e.chunk.js",
-    "static/css/main.d89c65d2.chunk.css",
-    "static/js/main.9b758d1d.chunk.js"
+    "static/css/2.de424728.chunk.css",
+    "static/js/2.fe8be964.chunk.js",
+    "static/css/main.be8927f3.chunk.css",
+    "static/js/main.3cc09c7d.chunk.js"
   ]
 }

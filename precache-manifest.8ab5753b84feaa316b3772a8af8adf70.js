@@ -1,23 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "a7b1ec9cc1600dfa4154e52e6114635f",
+    "revision": "c81c31f5b0ebf289aedfc526c9b94bf6",
     "url": "/coronacrypt/index.html"
   },
   {
-    "revision": "1ff61fa24ce38786efbb",
-    "url": "/coronacrypt/static/css/main.d89c65d2.chunk.css"
+    "revision": "0a308ef68b97d2437a5b",
+    "url": "/coronacrypt/static/css/2.de424728.chunk.css"
   },
   {
-    "revision": "332a991eb87fabe7c6c4",
-    "url": "/coronacrypt/static/js/2.28f59e8e.chunk.js"
+    "revision": "e1ead0695f69db8437eb",
+    "url": "/coronacrypt/static/css/main.be8927f3.chunk.css"
   },
   {
-    "revision": "2a65342a7cef87ae756f1549b040326b",
-    "url": "/coronacrypt/static/js/2.28f59e8e.chunk.js.LICENSE.txt"
+    "revision": "0a308ef68b97d2437a5b",
+    "url": "/coronacrypt/static/js/2.fe8be964.chunk.js"
   },
   {
-    "revision": "1ff61fa24ce38786efbb",
-    "url": "/coronacrypt/static/js/main.9b758d1d.chunk.js"
+    "revision": "9c468360182a516bc7b9b5de5f80b667",
+    "url": "/coronacrypt/static/js/2.fe8be964.chunk.js.LICENSE.txt"
+  },
+  {
+    "revision": "e1ead0695f69db8437eb",
+    "url": "/coronacrypt/static/js/main.3cc09c7d.chunk.js"
   },
   {
     "revision": "23be30342e327e7717a5",
