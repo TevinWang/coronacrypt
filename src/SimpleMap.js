@@ -1,3 +1,4 @@
+/* global google */
 /*
 Full CoronaCrypt Client
 
@@ -89,14 +90,17 @@ function gotCorona(coords, url, username) {
 class SimpleMap extends Component {
   constructor(props) {
     super(props);
-    this.state = {value: '', loggedIn: false, map: false, currentPage: null};
+    this.state = {value: '', loggedIn: false, map: false, currentPage: null, heatmapPoints: [
+    ], heatMap: false};
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.toggleMap = this.toggleMap.bind(this);
+    this.toggleHeatMap = this.toggleHeatMap.bind(this);
+    this.createHeatmapPoints = this.createHeatmapPoints.bind(this);
     this.corona = this.corona.bind(this);
     this.logOut = this.logOut.bind(this);
-    SimpleMap.state = {map: false, latitude: 0.0, longitude: 0.0, coords: [], coordState: false};
+    SimpleMap.state = {map: false, latitude: 0.0, longitude: 0.0, coords: [], coordState: false, heatmapCoords: []};
   }
 
   //Handles change in username input
@@ -110,6 +114,7 @@ class SimpleMap extends Component {
     sendCoords(this.props.coords ,"https://RawPythonTest.r2dev2bb8.repl.co", this.state.value);
     this.setState({loggedIn: true});
     this.getCoords(this.props.coords, "https://RawPythonTest.r2dev2bb8.repl.co", this.state.value);
+    this.getHeatmapCoords(this.props.coords, "https://RawPythonTest.r2dev2bb8.repl.co", this.state.value);
     event.preventDefault();
   }
   
@@ -123,9 +128,14 @@ class SimpleMap extends Component {
     this.setState({map: true});
   }
 
+  toggleHeatMap() {
+    this.setState({heatMap: true});
+    console.log(this.state.heatMap);
+  }
+
   //Called by "Logout" button, removes map and username
   logOut() {
-    this.setState({loggedIn: false, map: false});
+    this.setState({loggedIn: false, map: false, heatMap: false, value: ''});
   }
   
   //Gets coordinates of covid cases nearby
@@ -153,6 +163,45 @@ class SimpleMap extends Component {
       xmlHttp.setRequestHeader("Access-Control-Allow-Origin", "*");
 
       xmlHttp.send(null);
+  }
+  getHeatmapCoords(coords, url, username) {
+    console.log(coords);
+    var newcoords;
+    var xmlHttp = new XMLHttpRequest();
+
+      xmlHttp.onreadystatechange = function() {
+        
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+            newcoords = xmlHttp.responseText.split("\n");
+              for (var i=0; i<newcoords.length; i++) {
+                newcoords[i] = parseCoords(newcoords[i]);
+                SimpleMap.state.heatmapCoords.push(newcoords[i]);
+              }
+            console.log(newcoords);
+          }
+      }
+
+      xmlHttp.open("GET", url, true); 
+      
+      xmlHttp.setRequestHeader("Purpose", "heatMap");
+      xmlHttp.setRequestHeader("Access-Control-Allow-Origin", "*");
+
+      xmlHttp.send(null);
+  }
+  createHeatmapPoints() {
+    for (var i = 0; i < SimpleMap.state.heatmapCoords.length; i++) {
+      const lat = SimpleMap.state.heatmapCoords[i].latitude;
+      const lng = SimpleMap.state.heatmapCoords[i].longitude;
+      if (this._googleMap !== undefined) {   
+        // this.setState({
+        //   heatmapPoints: [ ...this.state.heatmapPoints, {lat, lng}]
+        // })
+        const point = new google.maps.LatLng(lat, lng);
+        console.log(point);
+        this._googleMap.heatmap.data.push(point);
+      }
+    }
+    
   }
   static createPoints(url, coords) {
       var coordsList = coords;
@@ -198,6 +247,13 @@ class SimpleMap extends Component {
   
   //Complete UI
   render() {
+    const heatMapData = {
+  		positions: this.state.heatmapPoints,
+		options: {
+			radius: 20,
+			opacity: 0.6
+		}
+  	}
    
     return !this.props.isGeolocationAvailable ? (
       <div style={{ height: '100vh', width: '100%', position: 'relative', textAlign: 'center' ,display: 'flex'}}>
@@ -260,7 +316,7 @@ class SimpleMap extends Component {
     
       </div>
       
-  ) : this.props.coords && this.state.loggedIn && !this.state.map ? (
+  ) : this.props.coords && this.state.loggedIn && !this.state.map && !this.state.heatMap ? (
     <div style={{ height: '100vh', width: '100%', position: 'relative', }}>
     <img class="wave" src={wave} />
     <h2><br></br></h2>
@@ -287,7 +343,8 @@ class SimpleMap extends Component {
                     <i class="fas fa-user"></i>
                 </div>
              </div>
-             <button class="btn" onClick={this.toggleMap}>Show Map</button>
+             <button class="btn" onClick={this.toggleMap}>Show cases near you</button>
+             <button class="btn" onClick={this.toggleHeatMap}>Show HeatMap</button>
           </form>
       </div>
       </div>
@@ -316,6 +373,35 @@ class SimpleMap extends Component {
        {this.createTable()}
 
       </GoogleMapReact>
+    </div>
+  ) : this.props.coords && this.state.loggedIn && this.state.heatMap ? (
+    <div style={{ height: '100vh', width: '100%' , textAlign: 'center', marginTop: 'auto', marginBottom: 'auto'}}>
+      <img class="wave" src={wave} />
+    <h2><br></br></h2>
+    <div style={{textAlign: 'center', display: 'flex', justifyContent: 'center'}}>
+      <h2><br></br></h2>
+      <img src={coronabottle} style={{height: '50px'}} /><h1>  CORONA</h1><h1 style={{color: '#25ac7d'}}>CRYPT</h1>
+    </div>
+    <div style={{textAlign: 'center'}}>
+    <h1><br></br></h1>
+    <h1>Welcome, {this.state.value}.</h1>
+    <div style={{display: 'flex'}}>
+    <button class="btn" style={{width: '200px', marginLeft: 'auto', marginRight: 'auto'}} onClick={this.corona}>Report Corona</button>
+    <button class="btn" style={{width: '200px', marginLeft: 'auto', marginRight: 'auto'}} onClick={this.createHeatmapPoints}>Show Heat</button>
+    <button class="btn" style={{width: '200px', marginLeft: 'auto', marginRight: 'auto'}} onClick={this.logOut}>Logout</button>
+     </div>
+     </div>
+     <GoogleMapReact
+          ref={(el) => this._googleMap = el}
+          bootstrapURLKeys={{key: "AIzaSyDTz5KwujIjzE6RRCnaJ5ZoZSroy4vdz-0"}}
+          defaultCenter={{lat: this.props.coords.latitude, lng: this.props.coords.longitude}}
+          defaultZoom={5}
+          heatmapLibrary={true}
+          heatmap={heatMapData}
+
+        >
+      
+        </GoogleMapReact>
     </div>
   ) : (
     <div style={{ height: '100vh', width: '100%', position: 'relative', textAlign: 'center'}}>
