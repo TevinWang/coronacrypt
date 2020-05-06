@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/coronacrypt/static/css/main.be8927f3.chunk.css",
-    "main.js": "/coronacrypt/static/js/main.49a57019.chunk.js",
-    "main.js.map": "/coronacrypt/static/js/main.49a57019.chunk.js.map",
+    "main.js": "/coronacrypt/static/js/main.03856ee2.chunk.js",
+    "main.js.map": "/coronacrypt/static/js/main.03856ee2.chunk.js.map",
     "runtime-main.js": "/coronacrypt/static/js/runtime-main.6a9aac57.js",
     "runtime-main.js.map": "/coronacrypt/static/js/runtime-main.6a9aac57.js.map",
     "static/css/2.de424728.chunk.css": "/coronacrypt/static/css/2.de424728.chunk.css",
     "static/js/2.4c7ae163.chunk.js": "/coronacrypt/static/js/2.4c7ae163.chunk.js",
     "static/js/2.4c7ae163.chunk.js.map": "/coronacrypt/static/js/2.4c7ae163.chunk.js.map",
     "index.html": "/coronacrypt/index.html",
-    "precache-manifest.0b4b3f92eec5b59f60dc6efa5356180a.js": "/coronacrypt/precache-manifest.0b4b3f92eec5b59f60dc6efa5356180a.js",
+    "precache-manifest.a072abcba14f189e2678d1a46b64068f.js": "/coronacrypt/precache-manifest.a072abcba14f189e2678d1a46b64068f.js",
     "service-worker.js": "/coronacrypt/service-worker.js",
     "static/css/2.de424728.chunk.css.map": "/coronacrypt/static/css/2.de424728.chunk.css.map",
     "static/css/main.be8927f3.chunk.css.map": "/coronacrypt/static/css/main.be8927f3.chunk.css.map",
@@ -23,6 +23,6 @@
     "static/css/2.de424728.chunk.css",
     "static/js/2.4c7ae163.chunk.js",
     "static/css/main.be8927f3.chunk.css",
-    "static/js/main.49a57019.chunk.js"
+    "static/js/main.03856ee2.chunk.js"
   ]
 }
